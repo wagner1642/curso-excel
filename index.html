@@ -3,119 +3,156 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Curso de Excel na Prática</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Curso de Excel - UNICV</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/732/732066.png" type="image/png" />
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
     body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
       margin: 0;
-      background-color: #f5f7fa;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem;
     }
-    .container {
-      background: #fff;
-      max-width: 500px;
+
+    header {
+      background-color: #1d6f42;
+      color: white;
       width: 100%;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    header img {
+      width: 64px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
+
+    header h1 {
+      display: inline-block;
+      font-size: 24px;
+      vertical-align: middle;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      margin-top: 30px;
+      padding: 30px;
       border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-    .logo {
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 500px;
       text-align: center;
-      margin-bottom: 1.5rem;
     }
-    .logo img {
-      height: 50px;
-    }
-    h1 {
-      text-align: center;
-      color: #2d3a4b;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    p {
-      text-align: center;
-      color: #6c7a89;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-    }
+
     input[type="email"] {
       width: 100%;
-      padding: 0.8rem;
-      font-size: 1rem;
+      padding: 12px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      font-size: 16px;
     }
-    .feedback {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
-      color: green;
-      display: none;
-    }
+
     button {
-      width: 100%;
-      padding: 0.8rem;
-      font-size: 1rem;
-      background-color: #2d89ef;
+      padding: 12px 20px;
+      font-size: 16px;
+      background-color: #1d6f42;
       color: white;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 1rem;
+      margin: 5px;
     }
-    .video-section {
-      display: none;
-      margin-top: 2rem;
+
+    button:hover {
+      background-color: #145c35;
     }
+
+    .message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
     .video-preview {
+      margin-top: 20px;
+    }
+
+    .video-preview img {
       width: 100%;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      cursor: pointer;
     }
-    .cta-button {
-      background-color: #27ae60;
+
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      padding: 10px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="logo-excel.png" alt="Logo Curso Excel" />
-    </div>
-    <h1>Curso de Excel na Prática</h1>
-    <p>Cadastre-se com seu e-mail para acessar a aula gratuita de introdução ao Excel.</p>
-    <input type="email" id="email" placeholder="Digite seu e-mail" required />
-    <div class="feedback" id="feedback">E-mail válido! Acesse abaixo:</div>
-    <button onclick="validarEmail()">Quero Assistir Agora</button>
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/732/732066.png" alt="Excel Icon" />
+    <h1>Curso de Excel - UNICV</h1>
+  </header>
 
-    <div class="video-section" id="videoSection">
-      <img class="video-preview" src="thumbnail-video.jpg" alt="Prévia do vídeo" />
-      <button class="cta-button" onclick="window.open('https://drive.google.com/file/d/1J6sGQnAMMB1ofolbWRTFI-RsAnZWS3Tw/view', '_blank')">Assistir no Navegador</button>
-      <button onclick="window.open('video.mp4', '_blank')">Baixar Aula</button>
+  <div class="container">
+    <p>Cadastre seu e-mail para acessar a aula gratuita de introdução ao Excel:</p>
+    <input type="email" id="emailInput" placeholder="Digite seu e-mail válido" />
+    <button onclick="validateEmail()">Cadastrar</button>
+
+    <div class="message" id="messageBox"></div>
+
+    <div class="video-preview" id="videoOptions" style="display:none;">
+      <h3>Aula de Introdução ao Excel</h3>
+      <img src="https://img.youtube.com/vi/Ss1R4Cm3gTE/hqdefault.jpg" alt="Prévia da Aula" onclick="watchOnline()" />
+      <div style="margin-top: 10px;">
+        <button onclick="downloadVideo()">Baixar Aula</button>
+        <button onclick="watchOnline()">Assistir no Navegador</button>
+        <button onclick="openInExternal()">Reproduzir no Player Externo</button>
+      </div>
     </div>
   </div>
 
+  <footer>
+    &copy; 2025 Wagner Santos da Conceição - UNICV. Imagem do ícone: <a href="https://www.flaticon.com/br/icones-gratis/excel" target="_blank" rel="noopener noreferrer">Flaticon</a>
+  </footer>
+
   <script>
-    function validarEmail() {
-      const email = document.getElementById('email').value;
-      const feedback = document.getElementById('feedback');
-      const videoSection = document.getElementById('videoSection');
+    function validateEmail() {
+      const email = document.getElementById("emailInput").value;
+      const messageBox = document.getElementById("messageBox");
+      const videoOptions = document.getElementById("videoOptions");
 
-      const regex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|hotmail\.com|yahoo\.com|icloud\.com|edu\.br|protonmail\.com|bol\.com\.br|uol\.com\.br|live\.com)$/i;
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|outlook|hotmail|yahoo|icloud|live|bol|uol|edu\.br|protonmail)\.(com|com\.br|net|org)$/;
 
-      if (regex.test(email)) {
-        feedback.style.display = 'block';
-        videoSection.style.display = 'block';
+      if (emailRegex.test(email)) {
+        messageBox.style.color = "green";
+        messageBox.textContent = "E-mail válido! Agora você pode acessar a aula.";
+        videoOptions.style.display = "block";
       } else {
-        alert('Por favor, insira um e-mail válido (ex: Gmail, Outlook, etc).');
+        messageBox.style.color = "red";
+        messageBox.textContent = "E-mail inválido. Por favor, digite um e-mail válido.";
+        videoOptions.style.display = "none";
       }
+    }
+
+    function downloadVideo() {
+      window.open("https://drive.google.com/uc?export=download&id=1J6sGQnAMMB1ofolbWRTFI-RsAnZWS3Tw", "_blank");
+    }
+
+    function watchOnline() {
+      window.open("https://drive.google.com/file/d/1J6sGQnAMMB1ofolbWRTFI-RsAnZWS3Tw/view", "_blank");
+    }
+
+    function openInExternal() {
+      window.open("https://drive.google.com/file/d/1J6sGQnAMMB1ofolbWRTFI-RsAnZWS3Tw/view", "_blank");
     }
   </script>
 </body>
