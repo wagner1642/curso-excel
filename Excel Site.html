@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso de Excel na Prática</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      margin: 0;
+      background-color: #f5f7fa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    .container {
+      background: #fff;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .logo img {
+      height: 50px;
+    }
+    h1 {
+      text-align: center;
+      color: #2d3a4b;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      text-align: center;
+      color: #6c7a89;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .feedback {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: green;
+      display: none;
+    }
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+      background-color: #2d89ef;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+    .video-section {
+      display: none;
+      margin-top: 2rem;
+    }
+    .video-preview {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .cta-button {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo-excel.png" alt="Logo Curso Excel" />
+    </div>
+    <h1>Curso de Excel na Prática</h1>
+    <p>Cadastre-se com seu e-mail para acessar a aula gratuita de introdução ao Excel.</p>
+    <input type="email" id="email" placeholder="Digite seu e-mail" required />
+    <div class="feedback" id="feedback">E-mail válido! Acesse abaixo:</div>
+    <button onclick="validarEmail()">Quero Assistir Agora</button>
+
+    <div class="video-section" id="videoSection">
+      <img class="video-preview" src="thumbnail-video.jpg" alt="Prévia do vídeo" />
+      <button class="cta-button" onclick="window.open('https://drive.google.com/file/d/1J6sGQnAMMB1ofolbWRTFI-RsAnZWS3Tw/view', '_blank')">Assistir no Navegador</button>
+      <button onclick="window.open('video.mp4', '_blank')">Baixar Aula</button>
+    </div>
+  </div>
+
+  <script>
+    function validarEmail() {
+      const email = document.getElementById('email').value;
+      const feedback = document.getElementById('feedback');
+      const videoSection = document.getElementById('videoSection');
+
+      const regex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|outlook\.com|hotmail\.com|yahoo\.com|icloud\.com|edu\.br|protonmail\.com|bol\.com\.br|uol\.com\.br|live\.com)$/i;
+
+      if (regex.test(email)) {
+        feedback.style.display = 'block';
+        videoSection.style.display = 'block';
+      } else {
+        alert('Por favor, insira um e-mail válido (ex: Gmail, Outlook, etc).');
+      }
+    }
+  </script>
+</body>
+</html>
